@@ -69,8 +69,16 @@ li {
     font-weight: 600;
 }
 
-.carrito p {
-    font-size: 20px;
+.carrito {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+}
+
+.carrito .carrito-trigger {
+    padding: 10px;
+
+    font-size: 15px;
     text-align: center;
 }
 

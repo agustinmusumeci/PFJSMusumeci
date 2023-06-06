@@ -16,6 +16,7 @@
                 <li class="li"><a href="#">Catálogo</a></li>
                 <li class="li"><a href="#">Contacto</a></li>
                 <li class="li"><a href="#">Sobre nosotros</a></li>
+                <button class="carrito-trigger" onclick="mostrarCarrito()">Ver carrito 🛒</button>
             </ul>
         </nav>
     </header>
@@ -34,6 +35,7 @@
                         <br>
                         <span>$1050</span>
                     </p>
+                    <button id="botonProtorta">Agregar al carrito</button>
                 </div>
                 <div class="imagenes catalogo-imagen2">
                     <img src="./assets/img/budin.jpg" alt="Budin de avellanas">
@@ -42,6 +44,7 @@
                         <br>
                         <span>$1300</span>
                     </p>
+                    <button id="botonBudin">Agregar al carrito</button>
                 </div>
                 <div class="imagenes catalogo-imagen3">
                     <img src="./assets/img/dulce.jpg" alt="Dulce de frutos">
@@ -49,7 +52,8 @@
                         Dulce de frutos
                         <br>
                         <span>$1950</span>
-                    </p> 
+                    </p>
+                    <button id="botonDulce">Agregar al carrito</button>
                 </div>
                 <div class="imagenes catalogo-imagen4">
                     <img src="./assets/img/hamburguesa.jpg" alt="Hamburguesas de acelga">
@@ -58,13 +62,12 @@
                         <br>
                         <span>$500</span>
                     </p>
+                    <button id="botonHamburguesa">Agregar al carrito</button>
                 </div>
             </div>
         </section>
-
         <aside class="carrito">
-            <h2 class="carrito-titulo">🛒 Carrito 🛒</h2>
-            <p id="total">Total: $</p>
+            
         </aside>
     </main>
     <footer class="footer">
@@ -76,7 +79,7 @@
             <li><a href="#">Sobre nosotros</a></li>
         </ul>
         <div class="footer-derechos">
-            <p>Con amor <3 Agustín Musumeci © 2023 </p>
+            <p>Con amor <3 Agustín Musumeci © 2023</p>
         </div>
     </footer>
     <script src="./script.js"></script>
