@@ -3,7 +3,7 @@ carrito = [];
 
 const contenedor_productos = document.getElementById("main-productos");
 const contenedor_carrito = document.getElementById("main-carrito-cuerpo");
-const productos_parse = JSON.parse(sessionStorage.getItem("catalogo"));
+
 const total = document.getElementById("total")    
 
 console.log(contenedor_productos);
@@ -37,10 +37,11 @@ productos.push (new Producto("006","Whey Protein",8000, 1, "Sumplemento de  prot
 productos.push (new Producto("007","Creatina Monohidratada",23450, 1,"Suplemento de creatina monohidratada en polvo de 500g de Ultratech Nutrition Classic.","creatina.webp"));
 
 sessionStorage.setItem("catalogo",JSON.stringify(productos));
+const productos_parse = JSON.parse(sessionStorage.getItem("catalogo"));
 
 if (sessionStorage.getItem("catalogo")) {
     productos_parse.forEach(producto => {
-        console.log(producto)
+    console.log(producto)
         tarjeta = `<div class='col-4 card' style='width: 15rem;'><img src='./assets/img/${producto.imagen}'      class='card-img-top' alt='pesas_de_4kg'><div class='card-body'><h5 class='card-title'>${producto.nombre}</h5><h6 class='card-title card-precio'>$ ${producto.precio}</h6><p class='card-text'>${producto.descripcion}<p><a href='#' class='btn btn-dark card-boton' onclick='agregarCarrito(${producto.id})'>Añadir al carrito</a></div></div>`;
         contenedor_productos.innerHTML += tarjeta;
     });
@@ -80,7 +81,7 @@ function actualizarCarrito() {
     carrito_parse = JSON.parse(localStorage.getItem("carrito"));
 
     if (localStorage.getItem("carrito")) {
-        carrito_parse.forEach(producto => {pedido = `<ul class="list-group list-group-numbered">
+        carrito_parse.forEach(producto => { pedido = `<ul class="list-group list-group-numbered">
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                             <div class="ms-2 me-auto">
                                 <div class="fw-bold">${producto.nombre}.</div>
