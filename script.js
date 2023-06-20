@@ -80,8 +80,7 @@ function actualizarCarrito() {
     carrito_parse = JSON.parse(localStorage.getItem("carrito"));
 
     if (localStorage.getItem("carrito")) {
-        carrito_parse.forEach(producto => {
-        pedido = `<ul class="list-group list-group-numbered">
+        carrito_parse.forEach(producto => {pedido = `<ul class="list-group list-group-numbered">
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                             <div class="ms-2 me-auto">
                                 <div class="fw-bold">${producto.nombre}.</div>
