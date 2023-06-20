@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+li {
+  list-style-type: none;
+}
+
+.header {
+  width: 100%;
+  min-height: 10vh;
+}
+.header .header-sub {
+  background-color: black;
+  color: azure;
+  text-align: center;
+  justify-content: center;
+}
+.header .nav {
+  width: 100%;
+  padding: 1em;
+  display: flex;
+  justify-content: space-evenly;
+}
+.header .nav .nav-bar {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: center;
+  align-content: center;
+}
+.header .nav .nav-bar .li {
+  padding: 0 0.55em 0 0.55em;
+}
+.header .nav .nav-bar .li-carrito {
+  position: absolute;
+  top: 1.25em;
+  right: 1.25em;
+  font-size: 2em;
+}
+
+.main {
+  width: 100%;
+  padding: 0.5em 5em 0.5em 5em;
+}
+.main #main-productos .card {
+  position: relative;
+  height: 31em;
+  margin: 0.2em;
+}
+.main #main-productos .card .card-boton {
+  margin: 1em;
+  position: absolute;
+  bottom: 0.5em;
+}
+
+/*# sourceMappingURL=style.css.map */
