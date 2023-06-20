@@ -3,13 +3,11 @@ carrito = [];
 
 const contenedor_productos = document.getElementById("main-productos");
 const contenedor_carrito = document.getElementById("main-carrito-cuerpo");
-
-const total = document.getElementById("total")    
-
+const total = document.getElementById("total");
+actualizarCarrito();
 console.log(contenedor_productos);
-if (localStorage.getItem("carrito")) {
-    actualizarCarrito()
-}
+
+
 
 class Producto {
     constructor(id, nombre, precio, cantidad, descripcion, imagen) {
@@ -76,11 +74,11 @@ function agregarCarrito(id) {
 }
 
 function actualizarCarrito() {
-    
-    contenedor_carrito.innerHTML = "";
-    carrito_parse = JSON.parse(localStorage.getItem("carrito"));
-
     if (localStorage.getItem("carrito")) {
+
+        contenedor_carrito.innerHTML = "";
+        carrito_parse = JSON.parse(localStorage.getItem("carrito"));
+    
         carrito_parse.forEach(producto => { pedido = `<ul class="list-group list-group-numbered">
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                             <div class="ms-2 me-auto">
@@ -92,24 +90,29 @@ function actualizarCarrito() {
                         </li>
                     </ul>`
         contenedor_carrito.innerHTML += pedido;
-    }); 
+        carrito = carrito_parse;
+        }); 
     total.innerText = "$" + carrito_parse.reduce((acumulador, producto) => acumulador + producto.precio, 0)
     } else {
         total.innerText = 0
+        contenedor_carrito.innerHTML = "";
     }
 }
 
+
+// if (carrito.length == 0) {
+//                 carrito.push(carrito_parse);
+//             }
+
 function eliminarDelCarrito(id) {
     bandera = true;
-    
+    console.log(id)
     carrito_parse.forEach(element => {
         if (id == element.id && bandera) {
             
             const indice = carrito_parse.indexOf(element);
             
-            if (carrito.length == 0) {
-                carrito.push(carrito_parse);
-            }
+            
             carrito.splice(indice, 1);
             localStorage.clear("carrito");
             localStorage.setItem("carrito",JSON.stringify(carrito));
