@@ -17,6 +17,10 @@ li {
   border-radius: 40px !important;
 }
 
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+  background-color: #7fbb22;
+}
+
 .header {
   width: 100%;
   min-height: 10vh;

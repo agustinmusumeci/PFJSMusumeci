@@ -3,6 +3,7 @@
 $color_principal : #7fbb22;
 $fuente_titulos :'Poppins', sans-serif;
 $fuente_textos: 'Montserrat',sans-serif;
+
 * {
     margin: 0;
     padding: 0;
@@ -19,6 +20,10 @@ li {
 
 .toastify {
     border-radius: 40px !important;
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+    background-color: #7fbb22;
 }
 
 .header {

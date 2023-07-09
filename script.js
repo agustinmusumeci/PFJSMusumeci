@@ -120,7 +120,7 @@ function eliminarDelCarrito(id) {
             bandera = false;
             actualizarCarrito();
             mostrarMensaje(
-                "Producto Eliminado del carrito",
+                "Producto Eliminado del carrito.",
                 "linear-gradient(to right, #FF6666, #FF6666)"
             );
         }
@@ -151,10 +151,13 @@ function finalizarCompra() {
         setTimeout(() => {
             botonFinalizar.innerText = "Finalizar compra";
         }, 2000);
-        window.location.href = "./pages/finalizarcompra.html";
+        // window.location.href = "./pages/finalizarcompra.html";
+        Swal.fire({
+        template: "#compraFinalizada",
+        });
     } else {
         mostrarMensaje(
-            "No hay productos aún en el carrito... Agrege alguno.",
+            "No hay productos aún en el carrito, agrege alguno.",
             "linear-gradient(to right, #FF6666, #FF6666)"
         );
     }
