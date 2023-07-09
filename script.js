@@ -1,132 +1,136 @@
-productos = [];
+// GLOBALES
 carrito = [];
 
-const contenedor_productos = document.getElementById("main-productos");
-const contenedor_carrito = document.getElementById("main-carrito-cuerpo");
+const contenedorProductos = document.getElementById("main-productos");
+const contenedorCarrito = document.getElementById("main-carrito-cuerpo");
 const total = document.getElementById("total");
+const botonFinalizar = document.getElementById("boton-finalizar");
+const contadorCarrito = document.getElementById("contador-carrito");
 actualizarCarrito();
-console.log(contenedor_productos);
+console.log(contenedorProductos);
 
+let resp;
+let data;
 
+// CARGA DE LOS PRODUCTOS MEDIANTE ARCHIVO "productos.json"
+async function cargarProdutos() {
+    try {
+        resp = await fetch("./productos.json");
+        data = await resp.json();
 
-class Producto {
-    constructor(id, nombre, precio, cantidad, descripcion, imagen) {
-        this.id = id
-        this.nombre = nombre
-        this.precio = precio
-        this.cantidad = cantidad
-        this.descripcion = descripcion   
-        this.imagen = imagen
+        data.forEach((producto) => {
+            tarjeta = `<div class='col-4 card' style='width: 15rem;'><img src='./assets/img/${producto.imagen}'class='card-img-top' alt='pesas_de_4kg'><div class='card-body'><h5 class='card-title'>${producto.nombre}</h5><h6 class='card-title card-precio'>$ ${producto.precio}</h6><p class='card-text'>${producto.descripcion}<p><a href='#' class='btn btn-dark card-boton' onclick='agregarCarrito(${producto.id})'>Añadir al carrito</a></div></div>`;
+            contenedorProductos.innerHTML += tarjeta;
+        });
+    } catch {
+        console.log("error");
+    } finally {
+        console.log("terminado");
     }
 }
+cargarProdutos();
 
-productos.push(new Producto("001","Pesas 4kg",4500,1,"Par de pesas de 4kg con recubrimiento gomoso, diseñada para mejor agarre.","pesas4.webp")); 
-
-productos.push (new Producto("002","Mancuernas 7,5kg",6750,1,"Par mancuernas de 7,5kg, diseño convencional de goma y rellena de arena y plomo.","pesas7,5.webp"));
-
-productos.push (new Producto("003","Mancuernas 10kg",9875,1,"Par mancuernas de 10kg, diseño convencional de goma y rellena de arena y plomo.", "pesas10.webp"));
-
-productos.push (new Producto("004","Barra W",13100,1,"Barra de acero inoxidable, uso horientado a bíceps.","barraw.webp"));
-
-productos.push (new Producto("005","Barra Olímpica",25000,1,"Barra de acero inoxidable de 2,2mts de largo y un peso de 20kg, ideal para todo tipo de ejercicios.","barraolimpica.webp"));
-
-productos.push (new Producto("006","Whey Protein",8000, 1, "Sumplemento de  proteína de 930g de Ena Sport True Made sabor vainilla.","proteina.webp"))
-
-productos.push (new Producto("007","Creatina Monohidratada",23450, 1,"Suplemento de creatina monohidratada en polvo de 500g de Ultratech Nutrition Classic.","creatina.webp"));
-
-sessionStorage.setItem("catalogo",JSON.stringify(productos));
-const productos_parse = JSON.parse(sessionStorage.getItem("catalogo"));
-
-if (sessionStorage.getItem("catalogo")) {
-    productos_parse.forEach(producto => {
-    console.log(producto)
-        tarjeta = `<div class='col-4 card' style='width: 15rem;'><img src='./assets/img/${producto.imagen}'      class='card-img-top' alt='pesas_de_4kg'><div class='card-body'><h5 class='card-title'>${producto.nombre}</h5><h6 class='card-title card-precio'>$ ${producto.precio}</h6><p class='card-text'>${producto.descripcion}<p><a href='#' class='btn btn-dark card-boton' onclick='agregarCarrito(${producto.id})'>Añadir al carrito</a></div></div>`;
-        contenedor_productos.innerHTML += tarjeta;
-    });
-}
-
-function mostrarMensaje(texto,color){
+function mostrarMensaje(texto, color) {
     Toastify({
         text: texto,
         duration: 3000,
         newWindow: true,
         close: true,
-        gravity: "bottom", 
+        gravity: "bottom",
         position: "left",
-        stopOnFocus: true, 
+        stopOnFocus: true,
         style: {
-        background: color,
-    },
+            background: color,
+        },
     }).showToast();
-    // avatar:"./assets/img/tick.png"
 }
 
-function agregarCarrito(id) {
-    productos_parse.forEach(producto => {
-        if (producto.id == id) {
-            carrito.push(producto);
-            localStorage.setItem("carrito",JSON.stringify(carrito));
-            console.log(carrito)
-            actualizarCarrito()
-            mostrarMensaje("Producto agregado al carrito.","linear-gradient(to right, #00b09b, #96c93d)")
+// AGREGAR PRODUCTOS AL CARRITO
+async function agregarCarrito(id) {
+    var isInCarrito = false;
+
+    carrito.forEach((elemento) => {
+        if (elemento.id == id) {         
+            elemento.cantidad = parseInt(elemento.cantidad) + 1;
+            grabarCarritoLocal();
+            isInCarrito = true;         
         }
     });
+
+    if (!isInCarrito) {
+        data.forEach((producto) => {
+            if (producto.id == id) {
+                carrito.push(producto);
+                grabarCarritoLocal();                
+            }
+        });
+    }
+}
+
+function grabarCarritoLocal() {
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    actualizarCarrito();
+    mostrarMensaje("Producto agregado al carrito.","linear-gradient(to right, #7fbb22, #96c909)");
+    
 }
 
 function actualizarCarrito() {
-    if (localStorage.getItem("carrito")) {
+    var contador = 0;
 
-        contenedor_carrito.innerHTML = "";
-        carrito_parse = JSON.parse(localStorage.getItem("carrito"));
-    
-        carrito_parse.forEach(producto => { pedido = `<ul class="list-group list-group-numbered">
+    if (localStorage.getItem("carrito")) {
+        contenedorCarrito.innerHTML = "";
+        carrito_local = JSON.parse(localStorage.getItem("carrito"));
+        carrito_local.forEach((producto) => {
+            pedido = `<ul class="list-group list-group-numbered">
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                             <div class="ms-2 me-auto">
                                 <div class="fw-bold">${producto.nombre}.</div>
                                 <p>$${producto.precio}</p>
-                                <a class="btn" onclick="eliminarDelCarrito(${producto.id})">Eliminar</a>
+                                <a class="btn" onclick="eliminarDelCarrito(${producto.id})"><i class="fa-solid fa-trash-can"></i></a>
                             </div>
-                            <span class="badge bg-primary rounded-pill">1</span>
+                            <span class="badge rounded-pill">${producto.cantidad}</span>
                         </li>
-                    </ul>`
-        contenedor_carrito.innerHTML += pedido;
-        carrito = carrito_parse;
-        }); 
-    total.innerText = "$" + carrito_parse.reduce((acumulador, producto) => acumulador + producto.precio, 0)
+                    </ul>`;
+            contenedorCarrito.innerHTML += pedido;
+            carrito = carrito_local;
+            contador += parseInt(producto.cantidad);
+        });
+        total.innerText =
+            "$" +
+            carrito_local.reduce(
+                (acumulador, producto) => acumulador + (parseInt(producto.precio)* parseInt(producto.cantidad)),
+                0
+            );
     } else {
-        total.innerText = 0
-        contenedor_carrito.innerHTML = "";
+        total.innerText = "No hay productos aun...";
+        contenedorCarrito.innerHTML = "";
     }
+    contadorCarrito.innerText = contador;
 }
-
-
-// if (carrito.length == 0) {
-//                 carrito.push(carrito_parse);
-//             }
 
 function eliminarDelCarrito(id) {
     bandera = true;
-    console.log(id)
-    carrito_parse.forEach(element => {
+    console.log(id);
+    carrito_local.forEach((element) => {
         if (id == element.id && bandera) {
-            
-            const indice = carrito_parse.indexOf(element);
-            
-            
+            const indice = carrito_local.indexOf(element);
             carrito.splice(indice, 1);
             localStorage.clear("carrito");
-            localStorage.setItem("carrito",JSON.stringify(carrito));
-            bandera = false
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+            bandera = false;
             actualizarCarrito();
-            mostrarMensaje("Producto Eliminado del carrito","linear-gradient(to right, #FF6666, #FFCC66)")
+            mostrarMensaje(
+                "Producto Eliminado del carrito",
+                "linear-gradient(to right, #FF6666, #FF6666)"
+            );
         }
     });
-    console.log(carrito)
+    console.log(carrito);
 }
 
 function limpiarCarrito() {
     Swal.fire({
-        template: '#confirmarBorrado',
+        template: "#confirmarBorrado",
     }).then((resultado) => {
         if (resultado.value) {
             localStorage.clear("carrito");
@@ -134,11 +138,24 @@ function limpiarCarrito() {
             console.log(carrito);
             actualizarCarrito();
         } else {
-            console.log("error")
+            console.log("error");
         }
-    })
+    });
 }
 
-
-
-
+function finalizarCompra() {
+    if (localStorage.getItem("carrito") && carrito.length) {
+        botonFinalizar.innerHTML = `<div class="spinner-border" role="status">
+            <span class="visually-hidden">Cargando...</span>
+            </div>`;
+        setTimeout(() => {
+            botonFinalizar.innerText = "Finalizar compra";
+        }, 2000);
+        window.location.href = "./pages/finalizarcompra.html";
+    } else {
+        mostrarMensaje(
+            "No hay productos aún en el carrito... Agrege alguno.",
+            "linear-gradient(to right, #FF6666, #FF6666)"
+        );
+    }
+}

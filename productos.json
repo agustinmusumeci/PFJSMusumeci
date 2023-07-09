@@ -1,0 +1,15 @@
+[
+    {"id":"1","nombre":"Pesas 4kg","precio":"4500","cantidad":"1","descripcion":"Par de pesas de 4kg con recubrimiento gomoso","imagen":"pesas4.webp","categoria":"mancuerna"},
+    {"id":"2","nombre":"Mancuernas 7,5kg","precio":"6750","cantidad":"1","descripcion":"Par mancuernas de 7,5kg, diseño convencional de goma.","imagen":"pesas7,5.webp","categoria":"mancuerna"},
+    {"id":"3","nombre":"Mancuernas 10kg","precio":"9875","cantidad":"1","descripcion":"Par mancuernas de 10kg, diseño convencional de goma.","imagen":"pesas10.webp","categoria":"mancuerna"},
+    {"id":"4","nombre":"Barra W","precio":"13100","cantidad":"1","descripcion":"Barra de acero inoxidable con formato W.","imagen":"barraw.webp","categoria":"barra"},
+    {"id":"5","nombre":"Barra Olímpica","precio":"25000","cantidad":"1","descripcion":"Barra de acero inoxidable 2,2mts de largo y 20kg.","imagen":"barraolimpica.webp","categoria":"barra"},
+    {"id":"6","nombre":"Whey Protein","precio":"12000","cantidad":"1","descripcion":"Sumplemento protéico de 930g de Ena sabor vainilla.","imagen":"proteina.webp","categoria":"suplemento"},
+    {"id":"7","nombre":"Creatina Monohidratada","precio":"23450","cantidad":"1","descripcion":"Suplemento de creatina monohidratada de 500g de Ultratech.","imagen":"creatina.webp","categoria":"suplemento"},
+    {"id":"8","nombre":"Glutamina Micronizada","precio":"5100","cantidad":"1","descripcion":"Suplemento Dietario Glutamina Micronizada de 150 g.","imagen":"glutamina.webp","categoria":"suplemento"},
+    {"id":"9","nombre":"Barra Protéica PureWellnes","precio":"600","cantidad":"1","descripcion":"Barra Protéica Pure Wellness Baja en azucares.","imagen":"barraproteica.webp","categoria":"suplemento"},
+    {"id":"10","nombre":"Suplemento Dietario Centrum silver","precio":"6615","cantidad":"1","descripcion":"Suplemento Dietario para hombres con 60 comprimidos.","imagen":"centrum.webp","categoria":"suplemento"},
+    {"id":"11","nombre":"Discos Bumper Olímpicos","precio":"16500","cantidad":"1","descripcion":"Discos Bumper Olímpicos de Goma.","imagen":"discosolimpicos.webp","categoria":"discos"},
+    {"id":"12","nombre":"Colchoneta","precio":"8600","cantidad":"1","descripcion":"Colchoneta 1x0,5x0,04 metros de goma.","imagen":"colchoneta.webp","categoria":"accesorios"},
+    {"id":"13","nombre":"Banda elastica","precio":"4300","cantidad":"1","descripcion":"Banda larga reforzada de 1,20 metros.","imagen":"bandaelastica.webp","categoria":"accesorios"}
+]
